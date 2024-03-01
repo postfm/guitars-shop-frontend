@@ -1,9 +1,12 @@
+import { Link } from 'react-router-dom';
+import { AppRouter } from '../constants/constants';
+
 const Footer = (): JSX.Element => (
   <footer className="footer">
     <div className="container">
       <div className="footer__container">
         <div className="footer__logo-wrapper">
-          <a className="footer__logo logo" href="main.html">
+          <Link className="footer__logo logo" to={AppRouter.Root}>
             <img
               className="logo__img"
               width={70}
@@ -11,7 +14,7 @@ const Footer = (): JSX.Element => (
               src="./img/svg/logo.svg"
               alt="Логотип"
             />
-          </a>
+          </Link>
           <div className="socials footer__socials">
             <ul className="socials__list">
               <li className="socials-item">
@@ -81,29 +84,29 @@ const Footer = (): JSX.Element => (
           </h2>
           <ul className="footer__nav-list">
             <li className="footer__nav-list-item">
-              <a className="link footer__nav-link" href="#top">
+              <Link className="link footer__nav-link" to={AppRouter.Where}>
                 Где купить?
-              </a>
+              </Link>
             </li>
             <li className="footer__nav-list-item">
-              <a className="link footer__nav-link" href="#top">
+              <Link className="link footer__nav-link" to={AppRouter.Blog}>
                 Блог
-              </a>
+              </Link>
             </li>
             <li className="footer__nav-list-item">
-              <a className="link footer__nav-link" href="#top">
+              <Link className="link footer__nav-link" to={AppRouter.FAQ}>
                 Вопрос - ответ
-              </a>
+              </Link>
             </li>
             <li className="footer__nav-list-item">
-              <a className="link footer__nav-link" href="#top">
+              <Link className="link footer__nav-link" to={AppRouter.Refund}>
                 Возврат
-              </a>
+              </Link>
             </li>
             <li className="footer__nav-list-item">
-              <a className="link footer__nav-link" href="#top">
+              <Link className="link footer__nav-link" to={AppRouter.Service}>
                 Сервис-центры
-              </a>
+              </Link>
             </li>
           </ul>
         </section>

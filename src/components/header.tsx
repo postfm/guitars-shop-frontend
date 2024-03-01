@@ -1,8 +1,11 @@
+import { Link } from 'react-router-dom';
+import { AppRouter } from '../constants/constants';
+
 const Header = (): JSX.Element => (
-  <header className="header--admin header" id="header">
+  <header className="header" id="header">
     <div className="container">
       <div className="header__wrapper">
-        <a className="header__logo logo" href="main.html">
+        <Link className="header__logo logo" to={AppRouter.Root}>
           <img
             className="logo__img"
             width={70}
@@ -10,26 +13,31 @@ const Header = (): JSX.Element => (
             src="./img/svg/logo.svg"
             alt="Логотип"
           />
-        </a>
+        </Link>
         <nav className="main-nav">
           <ul className="main-nav__list">
             <li className="main-nav__item">
-              <a className="link main-nav__link" href="main">
+              <Link className="link main-nav__link" to={AppRouter.Products}>
                 Каталог
-              </a>
+              </Link>
             </li>
             <li className="main-nav__item">
-              <a className="link main-nav__link" href="#">
-                Список товаров
-              </a>
+              <Link className="link main-nav__link" to={AppRouter.Where}>
+                Где купить?
+              </Link>
+            </li>
+            <li className="main-nav__item">
+              <Link className="link main-nav__link" to={AppRouter.About}>
+                О компании
+              </Link>
             </li>
           </ul>
         </nav>
         <div className="header__container">
           <span className="header__user-name">Имя</span>
-          <a
+          <Link
             className="header__link"
-            href="login.html"
+            to={AppRouter.Login}
             aria-label="Перейти в личный кабинет"
           >
             <svg
@@ -41,7 +49,7 @@ const Header = (): JSX.Element => (
               <use xlinkHref="#icon-account" />
             </svg>
             <span className="header__link-text">Вход</span>
-          </a>
+          </Link>
         </div>
       </div>
     </div>
