@@ -5,6 +5,7 @@ import { AppRouter } from '../constants/constants';
 import LoginPage from '../pages/login.page';
 import RegistrationPage from '../pages/registration.page';
 import ProductListPage from '../pages/product-list.page';
+import { productsLoader } from '../loaders/products.loader';
 
 export const router = createBrowserRouter([
   {
@@ -22,6 +23,7 @@ export const router = createBrowserRouter([
       },
       {
         path: AppRouter.Products,
+        loader: productsLoader,
         element: <ProductListPage />,
       },
     ],
