@@ -1,5 +1,6 @@
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import { ProductLoadInterface } from '../interfaces/products.interface';
+import { getDate } from '../utils/get-date';
 
 const ProductListPage = (): JSX.Element => {
   const data = useLoaderData() as ProductLoadInterface;
@@ -147,14 +148,14 @@ const ProductListPage = (): JSX.Element => {
                       alt="Картинка гитары"
                     />
                     <div className="catalog-item__data-wrapper">
-                      <a className="link" href="./product.html">
+                      <Link className="link" to={`/products/${product.id}`}>
                         <p className="catalog-item__data-title">
                           ЭлектроГитара Честер bass
                         </p>
-                      </a>
+                      </Link>
                       <br />
                       <p className="catalog-item__data-date">
-                        Дата добавления {String(product.createdAt)}
+                        Дата добавления {getDate(product.createdAt)}
                       </p>
                       <p className="catalog-item__data-price">
                         {product.price} ₽

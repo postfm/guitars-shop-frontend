@@ -1,9 +1,11 @@
-import axios from 'axios';
 import { ProductLoadInterface } from '../interfaces/products.interface';
+import { instance } from '../api/api';
+import type { LoaderFunction } from 'react-router';
 
-export const productsLoader = async (): Promise<ProductLoadInterface> => {
-  const { data } = await axios.get<ProductLoadInterface>(
-    'http://localhost:4000/guitar/products?sortDirection=desc&sortingType=price'
-  );
-  return data;
-};
+export const productsLoader: LoaderFunction =
+  async (): Promise<ProductLoadInterface> => {
+    const { data } = await instance.get<ProductLoadInterface>(
+      'products?sortDirection=desc&sortingType=price'
+    );
+    return data;
+  };
