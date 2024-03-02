@@ -1,6 +1,7 @@
-import { Link, useLoaderData } from 'react-router-dom';
+import { Form, Link, useLoaderData } from 'react-router-dom';
 import { ProductLoadInterface } from '../interfaces/products.interface';
 import { getDate } from '../utils/get-date';
+import { AppRouter, TypeOfGuitar } from '../constants/constants';
 
 const ProductListPage = (): JSX.Element => {
   const data = useLoaderData() as ProductLoadInterface;
@@ -150,7 +151,7 @@ const ProductListPage = (): JSX.Element => {
                     <div className="catalog-item__data-wrapper">
                       <Link className="link" to={`/products/${product.id}`}>
                         <p className="catalog-item__data-title">
-                          ЭлектроГитара Честер bass
+                          {`${TypeOfGuitar[product.type]} ${product.name}`}
                         </p>
                       </Link>
                       <br />
@@ -170,13 +171,16 @@ const ProductListPage = (): JSX.Element => {
                     >
                       Редактировать
                     </a>
-                    <button
-                      className="button button--small button--black-border"
-                      type="submit"
-                      aria-label="Удалить товар"
-                    >
-                      Удалить
-                    </button>
+                    <Form method="delete" action={AppRouter.Products}>
+                      <input type="hidden" name="id" value={product.id} />
+                      <button
+                        className="button button--small button--black-border"
+                        type="submit"
+                        aria-label="Удалить товар"
+                      >
+                        Удалить
+                      </button>
+                    </Form>
                   </div>
                 </li>
               ))}

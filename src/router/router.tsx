@@ -8,6 +8,7 @@ import ProductListPage from '../pages/product-list.page';
 import { productsLoader } from '../loaders/products.loader';
 import ProductPage from '../pages/product.page';
 import { productLoader } from '../loaders/product.loader';
+import { productsActions } from '../actions/products.actions';
 
 export const router = createBrowserRouter([
   {
@@ -26,6 +27,7 @@ export const router = createBrowserRouter([
       {
         path: AppRouter.Products,
         loader: productsLoader,
+        action: productsActions,
         element: <ProductListPage />,
       },
       {
