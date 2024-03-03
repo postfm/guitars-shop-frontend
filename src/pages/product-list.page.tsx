@@ -2,6 +2,7 @@ import { Form, Link, useLoaderData } from 'react-router-dom';
 import { ProductLoadInterface } from '../interfaces/products.interface';
 import { getDate } from '../utils/get-date';
 import { AppRouter, TypeOfGuitar } from '../constants/constants';
+import { getImageUrl } from '../utils/get-image-url';
 
 const ProductListPage = (): JSX.Element => {
   const data = useLoaderData() as ProductLoadInterface;
@@ -142,8 +143,8 @@ const ProductListPage = (): JSX.Element => {
                 <li className="catalog-item" key={product.id}>
                   <div className="catalog-item__data">
                     <img
-                      src={product.photo}
-                      srcSet={product.photo}
+                      src={getImageUrl(product.photo)}
+                      srcSet={getImageUrl(product.photo)}
                       width={36}
                       height={93}
                       alt="Картинка гитары"

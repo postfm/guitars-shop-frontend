@@ -3,11 +3,14 @@ import { ProductInterface } from '../interfaces/products.interface';
 import { getDate } from '../utils/get-date';
 import { AppRouter } from '../constants/constants';
 import { ChangeEvent, useRef, useState } from 'react';
+import { instance } from '../api/api';
+import { AxiosResponse } from 'axios';
+import { getImageUrl } from '../utils/get-image-url';
 
 const EditItemPage = (): JSX.Element => {
   const product = useLoaderData() as ProductInterface;
   const navigate = useNavigate();
-  const [file, setFile] = useState<File | string>(product.photo);
+  const [photo, setPhoto] = useState<string>(product.photo);
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   const handleUploadClick = () => {
@@ -19,7 +22,31 @@ const EditItemPage = (): JSX.Element => {
     if (!e.target.files) {
       return;
     }
-    setFile(e.target.files[0]);
+    const formData = new FormData();
+    formData.append('photo', e.target.files[0]);
+    formData.append('fileName', e.target.files[0].name);
+
+    instance
+      .post('files/upload', formData, {
+        headers: {
+          'content-type': 'multipart/form-data',
+        },
+      })
+      .then((response: AxiosResponse<string>) => setPhoto(response.data));
+  };
+
+  const handleFileDelete = () => {
+    instance
+      .post(
+        'files/delete',
+        { filePath: photo },
+        {
+          headers: {
+            'content-type': 'application/json',
+          },
+        }
+      )
+      .then((response: AxiosResponse<string>) => setPhoto(response.data));
   };
 
   return (
@@ -50,22 +77,22 @@ const EditItemPage = (): JSX.Element => {
               <div className="edit-item-image__image-wrap">
                 <img
                   className="edit-item-image__image"
-                  src={product.photo}
-                  srcSet={product.photo}
+                  src={getImageUrl(photo)}
+                  srcSet={getImageUrl(photo)}
                   width={133}
                   height={332}
                   alt={product.name}
                 />
               </div>
-              <input
-                type="file"
-                ref={inputRef}
-                accept="image/"
-                onChange={handleFileChange}
-                hidden
-              />
-              <input type="hidden" name="photo" value={String(file) ?? ''} />
+              <input type="hidden" name="photo" value={photo} />
               <div className="edit-item-image__btn-wrap">
+                <input
+                  type="file"
+                  ref={inputRef}
+                  accept="image/"
+                  onChange={handleFileChange}
+                  hidden
+                />
                 <button
                   className="button button--small button--black-border edit-item-image__btn"
                   type="button"
@@ -73,10 +100,13 @@ const EditItemPage = (): JSX.Element => {
                 >
                   Заменить
                 </button>
-                <button className="button button--small button--black-border edit-item-image__btn">
+                <button
+                  className="button button--small button--black-border edit-item-image__btn"
+                  type="button"
+                  onClick={handleFileDelete}
+                >
                   Удалить
                 </button>
-                i
               </div>
             </div>
             <div className="input-radio edit-item__form-radio">

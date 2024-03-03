@@ -3,6 +3,7 @@ import { ProductInterface } from '../interfaces/products.interface';
 import { AppRouter, TypeOfGuitar } from '../constants/constants';
 import { useState } from 'react';
 import classNames from 'classnames';
+import { getImageUrl } from '../utils/get-image-url';
 
 const ProductPage = (): JSX.Element => {
   const product = useLoaderData() as ProductInterface;
@@ -32,8 +33,8 @@ const ProductPage = (): JSX.Element => {
       <div className="product-container">
         <img
           className="product-container__img"
-          src={product.photo}
-          srcSet={product.photo}
+          src={getImageUrl(product.photo)}
+          srcSet={getImageUrl(product.photo)}
           width={90}
           height={235}
           alt="Картинка гитары"
