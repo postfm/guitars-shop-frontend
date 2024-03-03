@@ -164,13 +164,13 @@ const ProductListPage = (): JSX.Element => {
                     </div>
                   </div>
                   <div className="catalog-item__buttons">
-                    <a
+                    <Link
                       className="button button--small button--black-border"
-                      href="edit-item.html"
+                      to={`${AppRouter.EditItem}/${product.id}`}
                       aria-label="Редактировать товар"
                     >
                       Редактировать
-                    </a>
+                    </Link>
                     <Form method="delete" action={AppRouter.Products}>
                       <input type="hidden" name="id" value={product.id} />
                       <button

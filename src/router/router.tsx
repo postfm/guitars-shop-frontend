@@ -9,6 +9,7 @@ import { productsLoader } from '../loaders/products.loader';
 import ProductPage from '../pages/product.page';
 import { productLoader } from '../loaders/product.loader';
 import { productsActions } from '../actions/products.actions';
+import EditItemPage from '../pages/edit-item.page';
 
 export const router = createBrowserRouter([
   {
@@ -34,6 +35,11 @@ export const router = createBrowserRouter([
         path: `${AppRouter.Products}/:id`,
         loader: productLoader,
         element: <ProductPage />,
+      },
+      {
+        path: `${AppRouter.EditItem}/:id`,
+        loader: productLoader,
+        element: <EditItemPage />,
       },
     ],
   },

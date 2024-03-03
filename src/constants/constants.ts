@@ -10,6 +10,8 @@ export const AppRouter = {
   Blog: '/blog',
   FAQ: '/faq',
   Service: '/service',
+  EditItem: '/edit-item',
+  AddItem: '/add-item',
 } as const;
 
 type GuitarType = {

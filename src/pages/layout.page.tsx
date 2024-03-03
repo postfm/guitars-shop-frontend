@@ -1,4 +1,4 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, ScrollRestoration } from 'react-router-dom';
 import Footer from '../components/footer';
 import Header from '../components/header';
 
@@ -9,6 +9,7 @@ const LayoutPage = (): JSX.Element => (
       <Outlet />
     </main>
     <Footer />
+    <ScrollRestoration />
   </div>
 );
 
